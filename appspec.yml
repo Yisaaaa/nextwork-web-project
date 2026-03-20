@@ -3,9 +3,11 @@ os: linux
 files:
   - source: /target/nextwork-web-project.war
     destination: /usr/share/tomcat/webapps/
-overwrite_existing_files: true
 hooks:
   BeforeInstall:
+    - location: scripts/cleanup.sh
+      timeout: 60
+      runas: root
     - location: scripts/install_dependencies.sh
       timeout: 300
       runas: root
